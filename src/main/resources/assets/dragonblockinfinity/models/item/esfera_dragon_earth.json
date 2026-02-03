@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "dragonblockinfinity:item/ninbus/esfera_dragon_earth"
+    "layer0": "dragonblockinfinity:item/ninbus/fly_ninbus"
   },
   "display": {
     "gui": { "rotation": [ 30, -135, 0 ], "translation": [ 0, 0, 0 ], "scale": [ 0.625, 0.625, 0.625 ] },

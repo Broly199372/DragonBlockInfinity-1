@@ -13,22 +13,29 @@ public class NetworkHandler {
 
     private static final String PROTOCOL = "1";
     private static int id = 0;
+    private static SimpleChannel CHANNEL = null;
 
-    public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(DragonBlockInfinity.MOD_ID, "main"),
-            () -> PROTOCOL,
-            PROTOCOL::equals,
-            PROTOCOL::equals
-    );
+    public static SimpleChannel getChannel() {
+        if (CHANNEL == null) {
+            CHANNEL = NetworkRegistry.newSimpleChannel(
+                    new ResourceLocation(DragonBlockInfinity.MOD_ID, "main"),
+                    () -> PROTOCOL,
+                    PROTOCOL::equals,
+                    PROTOCOL::equals
+            );
+        }
+        return CHANNEL;
+    }
 
     public static void register() {
-        CHANNEL.messageBuilder(SyncKiPacket.class, nextId())
+        SimpleChannel channel = getChannel();
+        channel.messageBuilder(SyncKiPacket.class, nextId())
                 .encoder(SyncKiPacket::encode)
                 .decoder(SyncKiPacket::decode)
                 .consumerMainThread(SyncKiPacket::handle)
                 .add();
 
-        CHANNEL.messageBuilder(ConsumeKiPacket.class, nextId())
+        channel.messageBuilder(ConsumeKiPacket.class, nextId())
                 .encoder(ConsumeKiPacket::encode)
                 .decoder(ConsumeKiPacket::decode)
                 .consumerMainThread(ConsumeKiPacket::handle)
@@ -42,10 +49,10 @@ public class NetworkHandler {
     }
 
     public static void sendToPlayer(ServerPlayer player, Object msg) {
-        CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), msg);
+        getChannel().send(PacketDistributor.PLAYER.with(() -> player), msg);
     }
 
     public static void sendToServer(Object msg) {
-        CHANNEL.sendToServer(msg);
+        getChannel().sendToServer(msg);
     }
 }

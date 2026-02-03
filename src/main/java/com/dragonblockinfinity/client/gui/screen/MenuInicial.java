@@ -9,7 +9,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 
-import com.dragonblockinfinity.client.gui.screen.customization.component.PlayerModelRenderer;
+// import com.dragonblockinfinity.client.gui.screen.customization.component.PlayerModelRenderer;
 import com.dragonblockinfinity.common.race.RaceEnum;
 
 import java.util.Arrays;
@@ -63,32 +63,31 @@ public class MenuInicial extends Screen {
             // left arrow (2px from left edge of menu)
             int leftX = menuLeft + 2;
             final int rowFinal = row;
-            Button leftBtn = new Button(leftX, y, btnSize, btnSize, Component.literal("⬅"), btn -> {
+            Button leftBtn = Button.builder(Component.literal("⬅"), btn -> {
                 selected[rowFinal] = (selected[rowFinal] - 1 + raceNames.size()) % raceNames.size();
                 updateLabel(rowFinal);
                 if (rowFinal == 0) applyRaceToPlayer(selected[0]);
-            });
+            }).pos(leftX, y).size(btnSize, btnSize).build();
             this.addRenderableWidget(leftBtn);
 
             // center label/button (shows current value)
             int centerX = menuLeft + (menuWidth / 2) - (centerLabelWidth / 2);
-            Button center = new Button(centerX, y, centerLabelWidth, btnSize, Component.literal(raceNames.get(selected[row])), btn -> {
+            Button center = Button.builder(Component.literal(raceNames.get(selected[row])), btn -> {
                 selected[rowFinal] = (selected[rowFinal] + 1) % raceNames.size();
                 updateLabel(rowFinal);
                 if (rowFinal == 0) applyRaceToPlayer(selected[0]);
-            });
-            center.setMessage(Component.literal(raceNames.get(selected[row])));
+            }).pos(centerX, y).size(centerLabelWidth, btnSize).build();
             this.addRenderableWidget(center);
             centerButtons[row] = center;
 
             // right arrow (especial: row 0 -> 4px, outros -> 2px)
             int rightMargin = (row == 0) ? 4 : 2;
             int rightX = menuLeft + menuWidth - btnSize - rightMargin;
-            Button rightBtn = new Button(rightX, y, btnSize, btnSize, Component.literal("➡"), btn -> {
+            Button rightBtn = Button.builder(Component.literal("➡"), btn -> {
                 selected[rowFinal] = (selected[rowFinal] + 1) % raceNames.size();
                 updateLabel(rowFinal);
                 if (rowFinal == 0) applyRaceToPlayer(selected[0]);
-            });
+            }).pos(rightX, y).size(btnSize, btnSize).build();
             this.addRenderableWidget(rightBtn);
         }
     }
@@ -129,10 +128,8 @@ public class MenuInicial extends Screen {
         // entidade para preview
         Player player = Minecraft.getInstance().player;
         if (player != null) {
-            // escala ajustada para o preview (experimente ajustar o valor)
-            int scale = 50;
-            // desenha o player girando só Y e com cabeça seguindo mouse
-            PlayerModelRenderer.renderEntity(graphics, centerX, centerY + 10, scale, bodyYaw, headYaw, headPitch, player);
+            // Render simples - apenas placeholder
+            graphics.drawCenteredString(this.font, Component.literal("Player Preview"), centerX, centerY, 0xFFFFFF);
         }
 
         // desenha widgets (botões)

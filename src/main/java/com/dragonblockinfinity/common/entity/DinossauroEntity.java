@@ -1,6 +1,7 @@
 package com.dragonblockinfinity.common.entity;
 
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -8,14 +9,14 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder;
 
 
-public class DinossauroEntity extends Mob {
+public class DinossauroEntity extends PathfinderMob {
 
     // Campos locais (valores de configuração)
     private int vida = 3000;
     private int dano = 1525;
     private float velocidade = 2.2F;
 
-    public DinossauroEntity(EntityType<? extends Mob> entityType, Level level) {
+    public DinossauroEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
     }
 

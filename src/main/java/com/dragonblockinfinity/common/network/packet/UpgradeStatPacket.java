@@ -50,7 +50,7 @@ public class UpgradeStatPacket {
                         case "MND" -> data.getStats().setMind(currentVal + 1);
                     }
                     // Sincroniza os novos dados com o player
-                    NetworkHandler.sendToPlayer(new SyncPlayerDataPacket(data), player);
+                        NetworkHandler.sendToPlayer(player, new SyncPlayerDataPacket(data));
                 }
             });
         });

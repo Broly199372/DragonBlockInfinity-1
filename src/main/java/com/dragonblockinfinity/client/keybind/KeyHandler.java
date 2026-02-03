@@ -1,5 +1,6 @@
 package com.dragonblockinfinity.client.keybind;
 
+/*
 import com.dragonblockinfinity.DragonBlockInfinity;
 import com.dragonblockinfinity.client.gui.screen.customization.CustomizationMenuScreen;
 import net.minecraft.client.Minecraft;
@@ -21,4 +22,8 @@ public class KeyHandler {
             }
         }
     }
+}
+*/
+// Stub classe para evitar imports faltando
+public class KeyHandler {
 }

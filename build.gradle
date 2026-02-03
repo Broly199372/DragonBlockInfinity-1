@@ -27,7 +27,7 @@ configurations {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.20.1-47.3.0'
+    minecraft 'net.minecraftforge:forge:1.20.1-47.2.20'
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.4.5")
 }
 

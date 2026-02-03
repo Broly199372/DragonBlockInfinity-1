@@ -1,18 +1,9 @@
 package com.dragonblockinfinity.common.entity;
 
-import net.minecraft.client.animation.AnimationChannel;
-import net.minecraft.client.animation.AnimationDefinition;
-import net.minecraft.client.animation.Keyframe;
-import net.minecraft.client.animation.KeyframeAnimations;
+// Arquivo stub vazio - DinossauroAnimation foi movido para seu próprio arquivo em animation/
 
-/**
- * Definições de animação do Dinossauro
- * Gerado com Blockbench 5.0.7
- * Versão: Minecraft 1.20.1 com Mojang mappings
- * 
- * @author DragonBlockInfinity
- */
-public class DinossauroAnimation {
+/*
+class DinossauroAnimation {
 	public static final AnimationDefinition Pernas = AnimationDefinition.Builder.withLength(1.125F).looping()
 		.addAnimation("Tronco", new AnimationChannel(AnimationChannel.Targets.ROTATION, 
 			new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
@@ -263,3 +254,4 @@ public class DinossauroAnimation {
 		))
 		.build();
 }
+*/

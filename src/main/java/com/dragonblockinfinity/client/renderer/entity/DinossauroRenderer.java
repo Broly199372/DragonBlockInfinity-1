@@ -1,47 +1,40 @@
 package com.dragonblockinfinity.client.renderer.entity;
 
+import com.dragonblockinfinity.DragonBlockInfinity;
 import com.dragonblockinfinity.common.entity.DinossauroEntity;
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.resources.ResourceLocation;
-import com.dragonblockinfinity.common.entity.DinossauroModel;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 
-/**
- * Renderer para a entidade Dinossauro
- * 
- * Responsável por renderizar o Dinossauro com seu modelo
- * 
- * @author DragonBlockInfinity
- */
-public class DinossauroRenderer extends MobRenderer<DinossauroEntity, DinossauroModel> {
-    
-    // Caminho da textura do dinossauro
-    private static final ResourceLocation TEXTURE = 
-        new ResourceLocation("dragonblock", "textures/entity/dinossauro.png");
-    
-    public DinossauroRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new DinossauroModel(renderManager.bakeLayer(DinossauroModel.LAYER_LOCATION)), 1.5F);
-        
-        // Distância de renderização da sombra
-        this.shadowRadius = 2.0F;
+public class DinossauroRenderer extends MobRenderer<DinossauroEntity, EntityModel<DinossauroEntity>> {
+
+    public DinossauroRenderer(EntityRendererProvider.Context context) {
+        super(context, new DinossauroModel(new ModelPart(com.google.common.collect.ImmutableList.of(), java.util.Map.of())), 1.0f);
     }
-    
-    /**
-     * Retorna a textura do dinossauro
-     */
+
     @Override
-    public ResourceLocation getTextureLocation(DinossauroEntity dinossauro) {
-        return TEXTURE;
+    public ResourceLocation getTextureLocation(DinossauroEntity entity) {
+        return new ResourceLocation(DragonBlockInfinity.MOD_ID, "textures/entity/mobs/dino/dinossauro.png");
     }
+}
+
+class DinossauroModel extends EntityModel<DinossauroEntity> {
+    private final ModelPart root;
     
-    /**
-     * Renderiza a entidade
-     */
+    public DinossauroModel(ModelPart modelPart) {
+        this.root = modelPart;
+    }
+
     @Override
-    public void render(DinossauroEntity dinossauro, float entityYaw, float partialTick, 
-                      PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        super.render(dinossauro, entityYaw, partialTick, poseStack, bufferSource, packedLight);
+    public void setupAnim(DinossauroEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    }
+
+    @Override
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        this.root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 }

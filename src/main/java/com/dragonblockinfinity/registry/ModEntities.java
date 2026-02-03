@@ -13,7 +13,7 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 public class ModEntities {
 
     public static final DeferredRegister<EntityType<?>> ENTITIES =
-        DeferredRegister.create(ForgeRegistries.ENTITIES, DragonBlockInfinity.MOD_ID);
+        DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, DragonBlockInfinity.MOD_ID);
 
     public static final RegistryObject<EntityType<DinossauroEntity>> DINOSSAURO =
         ENTITIES.register("dinossauro", () ->

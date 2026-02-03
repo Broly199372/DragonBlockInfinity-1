@@ -10,6 +10,9 @@ public class ModRegistry {
     public static void register(IEventBus bus) {
         System.out.println("[DBI] Registrando componentes...");
 
+        // Registrar abas criativas
+        ModCreativeTabs.register(bus);
+
         // Registrar blocos
         ModBlocks.BLOCKS.register(bus);
 

@@ -20,21 +20,10 @@ public class RadarItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
-        if (!level.isClientSide()) {
-            List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(100));
-            String nearest = list.stream()
-                .filter(e -> e != player)
-                .findFirst()
-                .map(e -> e.getType().getRegistryName().toString())
-                .orElse("nenhuma");
-            Component msg = Component.literal("Radar: entidade mais próxima = " + nearest);
-            if (player instanceof ServerPlayer serverPlayer) {
-                serverPlayer.sendSystemMessage(msg);
-            } else {
-                player.displayClientMessage(msg, false);
-            }
+        ItemStack itemStack = player.getItemInHand(hand);
+        if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
+            serverPlayer.displayClientMessage(Component.literal("§6Radar: Nenhuma ameaça detectada!"), true);
         }
-        return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
+        return InteractionResultHolder.success(itemStack);
     }
 }

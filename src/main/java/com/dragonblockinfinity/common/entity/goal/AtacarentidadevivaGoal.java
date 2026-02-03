@@ -1,9 +1,11 @@
 package com.dragonblockinfinity.common.entity.goal;
 
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.phys.AABB;
+import java.util.List;
 
 /**
  * Goal para atacar qualquer entidade viva
@@ -20,7 +22,7 @@ public class AtacarentidadevivaGoal extends MeleeAttackGoal {
     private static final double ALTURA_ATAQUE = 4.0D;
     private static final double PROFUNDIDADE_ATAQUE = 8.0D; // Distância à frente
     
-    public AtacarentidadevivaGoal(Mob mob, double speed, boolean followingTargetEvenWithLowHealth) {
+    public AtacarentidadevivaGoal(PathfinderMob mob, double speed, boolean followingTargetEvenWithLowHealth) {
         super(mob, speed, followingTargetEvenWithLowHealth);
     }
     
@@ -41,10 +43,14 @@ public class AtacarentidadevivaGoal extends MeleeAttackGoal {
         
         // Procurar por qualquer entidade viva próxima se não tiver target
         if (this.mob.getTarget() == null) {
-            LivingEntity proximaEntidade = this.mob.level()
-                .getNearestEntity(LivingEntity.class, null, 
-                    this.mob.getX(), this.mob.getY(), this.mob.getZ(), 
-                    this.mob.getBoundingBox().inflate(this.calcularDistancia()));
+                List<LivingEntity> list = this.mob.level().getEntitiesOfClass(LivingEntity.class, this.mob.getBoundingBox().inflate(this.calcularDistancia()));
+                LivingEntity proximaEntidade = null;
+                for (LivingEntity e : list) {
+                    if (!(e instanceof Mob)) {
+                        proximaEntidade = e;
+                        break;
+                    }
+                }
             
             if (proximaEntidade != null && !(proximaEntidade instanceof Mob)) {
                 // Verifica se está dentro da caixa de ataque
@@ -107,7 +113,7 @@ public class AtacarentidadevivaGoal extends MeleeAttackGoal {
         double yaw = Math.toRadians(this.mob.getYRot());
         
         // Ponto à frente baseado na rotação
-        double profundidade = 3.0D; // Distância até o início da caixa
+        double profundidade = PROFUNDIDADE_ATAQUE; // Distância até o início da caixa
         double frontX = x + Math.cos(yaw) * profundidade;
         double frontZ = z + Math.sin(yaw) * profundidade;
         

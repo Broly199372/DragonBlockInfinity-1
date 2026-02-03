@@ -8,7 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.KeyMapping;
-import com.dragonblockinfinity.common.gui.MenuInicial;
+import com.dragonblockinfinity.client.gui.screen.MenuInicial;
 
 @Mod.EventBusSubscriber(modid = DragonBlockInfinity.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DBIKeyEvents {
@@ -27,3 +27,5 @@ public class DBIKeyEvents {
         }
     }
 }
+
+

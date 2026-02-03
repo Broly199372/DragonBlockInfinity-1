@@ -1,6 +1,7 @@
 package com.dragonblockinfinity;
 
 import com.dragonblockinfinity.common.ki.KiCapability;
+import com.dragonblockinfinity.common.network.NetworkHandler;
 import com.dragonblockinfinity.common.command.SpawnDinossauroCommand;
 import com.dragonblockinfinity.registry.ModRegistry;
 import com.dragonblockinfinity.registry.ModEntities;
@@ -41,7 +42,7 @@ public class DragonBlockInfinity {
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             System.out.println("[DBI] Common setup...");
-            // NetworkHandler.register(); // descomente se disponível
+            NetworkHandler.register();
         });
     }
 

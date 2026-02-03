@@ -1,32 +1,41 @@
-package com.dragonblockinfinity.common.entity
+package com.dragonblockinfinity.common.entity;
 
-// Made with Blockbench 5.0.7
-// Exported for Minecraft version 1.17 or later with Mojang mappings
-// Paste this class into your mod and generate all required imports
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.model.geom.builders.PartPose;
+import net.minecraft.world.entity.Entity;
 
-
-public class unknown<T extends Entity> extends EntityModel<T> {
-	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "unknown"), "main");
+/**
+ * Placeholder stub for Blockbench-generated model. The original generated
+ * model caused compilation errors; replace with a proper model when ready.
+ */
+public final class Nuvem extends EntityModel<Entity> {
 	private final ModelPart root;
 	private final ModelPart nubecita1;
+	private final ModelPart nubecita2;
 	private final ModelPart nubecita3;
 	private final ModelPart nubecita4;
 	private final ModelPart nubecita5;
 	private final ModelPart nubecita6;
 	private final ModelPart nubecita7;
+	private final ModelPart nubecita8;
+	private final ModelPart nubecita9;
 	private final ModelPart nubecita10;
 	private final ModelPart nubecita11;
 	private final ModelPart nubecita12;
 	private final ModelPart nubecita13;
 	private final ModelPart nubecita14;
 	private final ModelPart nubecita15;
-	private final ModelPart nubecita8;
-	private final ModelPart nubecita9;
 	private final ModelPart nubecita16;
 	private final ModelPart nubecita17;
 	private final ModelPart nubecita18;
-	private final ModelPart nubecita2;
 	private final ModelPart nubecita19;
 	private final ModelPart nubecita20;
 	private final ModelPart nubecita21;
@@ -39,7 +48,7 @@ public class unknown<T extends Entity> extends EntityModel<T> {
 	private final ModelPart nubecita28;
 	private final ModelPart nubecita29;
 
-	public unknown(ModelPart root) {
+	public Nuvem(ModelPart root) {
 		this.root = root.getChild("root");
 		this.nubecita1 = this.root.getChild("nubecita1");
 		this.nubecita3 = this.root.getChild("nubecita3");

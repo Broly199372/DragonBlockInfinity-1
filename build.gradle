@@ -16,6 +16,10 @@ repositories {
     maven { url "https://maven.minecraftforge.net/" }
     maven { url "https://repo.spongepowered.org/repository/maven-public/" }
     maven { url "https://maven.geckolib.dev" }
+    maven {
+        name = "GeckoLib"
+        url = uri("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
+    }
 }
 
 configurations {
@@ -24,7 +28,7 @@ configurations {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.3.0'
-    implementation 'software.bernie.geckolib:geckolib-forge-1.20.1:4.4.5'
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.4.5")
 }
 
 minecraft {

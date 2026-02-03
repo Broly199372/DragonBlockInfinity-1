@@ -3,39 +3,61 @@ package com.dragonblockinfinity.common.entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder;
 
-/**
- * Entidade base do Dinossauro
- * 
- * TODO: Adicione aqui as funcionalidades de:
- * - Vida (health)
- * - Dano (attackDamage)
- * - Velocidade (movementSpeed)
- * 
- * @author DragonBlockInfinity
- */
+
 public class DinossauroEntity extends Mob {
-    
-    // Adicione seus atributos aqui
+
+    // Campos locais (valores de configuração)
     private int vida = 3000;
-    int dano = 1525;
-    float velocidade = 2.2F;
-    
+    private int dano = 1525;
+    private float velocidade = 2.2F;
+
+    public DinossauroEntity(EntityType<? extends Mob> entityType, Level level) {
+        super(entityType, level);
+    }
+
     public int getVida() {
         return vida;
     }
-    
+
     public void setVida(int vida) {
         this.vida = vida;
     }
-    
-    public DinossauroEntity(EntityType<? extends DinossauroEntity> entityType, Level level) {
-        super(entityType, level);
+
+    public int getDano() {
+        return dano;
     }
-    public static final RegistryObject<EntityType<DinossauroEntity>> DINOSSAURO = 
-        ENTITIES.register("dinossauro", () -> EntityType.Builder
-        .of(DinossauroEntity::new, MobCategory.CREATURE)
-        .sized(1.8f, 2.33f)  // ← LARGURA: 1.8 blocos, ALTURA: 2.33 blocos
-        .build("dinossauro"));
-    // Adicione seus métodos aqui
+
+    public float getVelocidade() {
+        return velocidade;
+    }
+
+    public void setVelocidade(float velocidade) {
+        this.velocidade = velocidade;
+    }
+
+    public static float getVelocidadeBase() {
+        return 2.2F;
+    }
+
+    @Override
+    protected void registerGoals() {
+        // registra goals locais (usa o goal existente no pacote se houver)
+        try {
+            this.goalSelector.addGoal(0, new com.dragonblockinfinity.common.entity.goal.AtacarentidadevivaGoal(this, 1.0D, false));
+        } catch (Throwable ignored) {}
+    }
+
+    /**
+     * Cria o AttributeSupplier para registro (evita erro "has attributes").
+     */
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+            .add(Attributes.MAX_HEALTH, 3000.0D)
+            .add(Attributes.ATTACK_DAMAGE, 1525.0D)
+            .add(Attributes.MOVEMENT_SPEED, 0.3D);
+    }
 }

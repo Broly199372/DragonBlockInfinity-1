@@ -1,6 +1,7 @@
 package com.dragonblockinfinity.registry;
 
 import net.minecraft.world.level.block.Block;
+import com.dragonblockinfinity.common.blocks.DirtyStoneBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -14,7 +15,5 @@ public class ModBlocks {
         DeferredRegister.create(ForgeRegistries.BLOCKS, "dragonblockinfinity");
     
     public static final RegistryObject<Block> DIRTY_STONE = BLOCKS.register("dirty_stone",
-        () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
-            .strength(1.5f, 6.0f)
-            .sound(SoundType.STONE)));
+        DirtyStoneBlock::new);
 }

@@ -12,6 +12,7 @@ public class DBIKeybinds {
 
     public static final String CATEGORY = "key.categories.dragonblockinfinity";
     public static KeyMapping CONSUME_KI;
+    public static KeyMapping OPEN_MENU;
 
     @SubscribeEvent
     public static void register(RegisterKeyMappingsEvent event) {
@@ -21,6 +22,13 @@ public class DBIKeybinds {
                 CATEGORY
         );
 
+        OPEN_MENU = new KeyMapping(
+                "key.dragonblockinfinity.open_menu",
+                GLFW.GLFW_KEY_M,
+                CATEGORY
+        );
+
         event.register(CONSUME_KI);
+        event.register(OPEN_MENU);
     }
 }

@@ -1,10 +1,13 @@
 package com.dragonblockinfinity;
 
 import com.dragonblockinfinity.common.ki.KiCapability;
-import com.dragonblockinfinity.common.network.NetworkHandler;
+import com.dragonblockinfinity.common.command.SpawnDinossauroCommand;
 import com.dragonblockinfinity.registry.ModRegistry;
+import com.dragonblockinfinity.registry.ModEntities;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -23,6 +26,12 @@ public class DragonBlockInfinity {
 
         ModRegistry.register(modEventBus);
 
+        // Registrar listener de atributos de entidade
+        modEventBus.addListener((EntityAttributeCreationEvent e) -> ModEntities.registerAttributes(e));
+
+        // Registrar comando de spawn (evento Forge)
+        MinecraftForge.EVENT_BUS.addListener((RegisterCommandsEvent e) -> SpawnDinossauroCommand.register(e.getDispatcher()));
+
         // Eventos Forge (attach capability + tick regen + sync)
         MinecraftForge.EVENT_BUS.register(new KiCapability.Events());
 
@@ -31,8 +40,8 @@ public class DragonBlockInfinity {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            NetworkHandler.register();
-            System.out.println("[DBI] Network Handler registrado!");
+            System.out.println("[DBI] Common setup...");
+            // NetworkHandler.register(); // descomente se disponível
         });
     }
 

@@ -1,7 +1,15 @@
 package com.dragonblockinfinity.registry;
 
-import net.minecraft.world.item.Item;
+import com.dragonblockinfinity.common.items.DinoMeatCookedItem;
+import com.dragonblockinfinity.common.items.DinoMeatItem;
+import com.dragonblockinfinity.common.items.EsferaDragonItem;
+import com.dragonblockinfinity.common.items.RadarItem;
+import com.dragonblockinfinity.common.items.SenzuItem;
+import com.dragonblockinfinity.common.items.ScouterItem;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -13,29 +21,29 @@ public class ModItems {
     
     // BlockItems
     public static final RegistryObject<Item> DIRTY_STONE = ITEMS.register("dirty_stone",
-        () -> new BlockItem(ModBlocks.DIRTY_STONE.get(), new Item.Properties()));
-    
+        () -> new BlockItem(ModBlocks.DIRTY_STONE.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
+
     // Comida
     public static final RegistryObject<Item> SENZU = ITEMS.register("senzu",
-        () -> new Item(new Item.Properties()));
-    
+        () -> new SenzuItem(new Item.Properties().stacksTo(16).tab(CreativeModeTab.TAB_FOOD)));
+
     public static final RegistryObject<Item> DINO_MEAT = ITEMS.register("dino_meat",
-        () -> new Item(new Item.Properties()));
-    
+        () -> new DinoMeatItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(0.3f).meat().build()).tab(CreativeModeTab.TAB_FOOD)));
+
     public static final RegistryObject<Item> DINO_MEAT_COOKED = ITEMS.register("dino_meat_cooked",
-        () -> new Item(new Item.Properties()));
-    
+        () -> new DinoMeatCookedItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(0.8f).meat().build()).tab(CreativeModeTab.TAB_FOOD)));
+
     // Equipamentos
     public static final RegistryObject<Item> SCOUTER = ITEMS.register("scouter",
-        () -> new Item(new Item.Properties()));
-    
+        () -> new ScouterItem(new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_TOOLS)));
+
     public static final RegistryObject<Item> RADAR = ITEMS.register("radar",
-        () -> new Item(new Item.Properties()));
-    
-    // Dragon Balls
+        () -> new RadarItem(new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_TOOLS)));
+
+    // Dragon Balls / itens especiais
     public static final RegistryObject<Item> DRAGON_ESFER = ITEMS.register("dragon_esfer",
-        () -> new Item(new Item.Properties()));
-    
+        () -> new Item(new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_MISC)));
+
     public static final RegistryObject<Item> ESFERA_DRAGON_EARTH = ITEMS.register("esfera_dragon_earth",
-        () -> new Item(new Item.Properties()));
+        () -> new EsferaDragonItem(new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_MISC)));
 }
